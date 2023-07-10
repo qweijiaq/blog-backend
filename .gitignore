@@ -150,3 +150,9 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+.idea
+local_settings.yaml
+.air.toml
+testData
+settings副本.yaml
