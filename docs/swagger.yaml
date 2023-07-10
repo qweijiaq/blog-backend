@@ -1,0 +1,176 @@
+basePath: /
+definitions:
+  ctype.ImageType:
+    enum:
+    - 1
+    - 2
+    type: integer
+    x-enum-comments:
+      Local: 本地
+      QiNiu: 七牛云
+    x-enum-varnames:
+    - Local
+    - QiNiu
+  images_api.ImageResponse:
+    properties:
+      id:
+        type: integer
+      name:
+        description: 图片名称
+        type: string
+      path:
+        description: 图片路径
+        type: string
+    type: object
+  images_api.ImageUpdateRequest:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+    required:
+    - id
+    - name
+    type: object
+  models.BannerModel:
+    properties:
+      created_at:
+        type: string
+      hash:
+        description: 图片的 hash 值，用于判断是否重复
+        type: string
+      id:
+        type: integer
+      image_type:
+        $ref: '#/definitions/ctype.ImageType'
+      name:
+        description: 图片名称
+        type: string
+      path:
+        description: 图片路径
+        type: string
+    type: object
+  models.RemoveRequest:
+    properties:
+      id_list:
+        items:
+          type: integer
+        type: array
+    type: object
+  res.ListResponse-models_BannerModel:
+    properties:
+      count:
+        type: integer
+      list:
+        $ref: '#/definitions/models.BannerModel'
+    type: object
+  res.Response:
+    properties:
+      code:
+        type: integer
+      data: {}
+      msg:
+        type: string
+    type: object
+host: 127.0.0.1:8080
+info:
+  contact: {}
+  description: blog_backend API 文档
+  title: backend API 文档
+  version: "1.0"
+paths:
+  /api/image_names:
+    get:
+      description: 查询图片名称
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/res.Response'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/images_api.ImageResponse'
+                  type: array
+              type: object
+      summary: 查询图片名称
+      tags:
+      - 图片管理
+  /api/images:
+    delete:
+      description: 删除图片
+      parameters:
+      - description: 图片ID列表 -- 必须是数组类型
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.RemoveRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/res.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: 删除图片
+      tags:
+      - 图片管理
+    get:
+      description: 查询图片
+      parameters:
+      - in: query
+        name: key
+        type: string
+      - in: query
+        name: limit
+        type: integer
+      - in: query
+        name: page
+        type: integer
+      - in: query
+        name: sort
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/res.Response'
+            - properties:
+                data:
+                  $ref: '#/definitions/res.ListResponse-models_BannerModel'
+              type: object
+      summary: 查询图片
+      tags:
+      - 图片管理
+    put:
+      description: 更新图片
+      parameters:
+      - description: 图片ID
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/images_api.ImageUpdateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/res.Response'
+      summary: 更新图片
+      tags:
+      - 图片管理
+swagger: "2.0"

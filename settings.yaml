@@ -1,0 +1,78 @@
+mysql:
+  host: 127.0.0.1
+  port: 3306
+  config: charset=utf8mb4&parseTime=True&loc=Local
+  db: gvb_db
+  user: root
+  password: weijia123
+  log_level: dev
+logger:
+  level: info
+  prefix: '[gopher_project]'
+  director: log
+  show_line: true
+  log_in_console: true
+system:
+  host: 0.0.0.0
+  port: 8888
+  env: release
+site_info:
+  created_at: "2023-04-05"
+  bei_an: 皖ICP备2022012261号
+  title: GopherBlog | 个人技术博客
+  qq_image: https://www.gopher.fit/static/my/img/footer/qq.jpeg
+  version: 2.0.0
+  email: 2112025700@qq.com
+  wechat_image: https://www.gopher.fit/static/my/img/footer/wechat.jpeg
+  name: 永不退场的闯关族
+  job: 立志成为全栈开发工程师的研究僧
+  school: 重庆大学
+  addr: 中国·重庆
+  slogan: 我们都活在阴沟里，但仍有人仰望星空！！！
+  slogan_en: We all live in the gutter, but there are still people looking up at the
+    stars.
+  web: http://www.gopher.fit/
+  gitee: https://gitee.com/wei_jia0826
+  github: https://github.com/qweijiaq
+  csdn: https://woniu.blog.csdn.net/
+qq:
+  app_id: "102046882"
+  key: d9RaVs2yf8MSN4Zp
+  redirect: http://www.gopher.fit/oauth?flag=qq
+qi_niu:
+  enable: true
+  access_key: 20XGZQLc3G3qBbuKm_7ryQ4h3nlGCxU2mvGkwiJF
+  secret_key: 7S6gKqTOHUjg9TjOy-QKwMIQlIqjSEwiyHKFwXkm
+  bucket: golang-vue-blog
+  cdn: gbimg.gopher.fit
+  prefix: GB
+  zone: z2
+  size: 8
+email:
+  host: smtp.qq.com
+  port: 465
+  user: 2112025700@qq.com
+  password: kxyicxngbvihegdc
+  default_from_email: GopherBlog
+  use_ssl: false
+  use_tls: false
+jwt:
+  secret: xxx
+  expires: 720
+  issuer: Gopher
+upload:
+  size: 2
+  path: uploads/file
+redis:
+  ip: 127.0.0.1
+  port: 6379
+  password: ""
+  pool_size: 100
+es:
+  host: http://127.0.0.1
+  port: 9200
+  config: ""
+  db: ""
+  user: ""
+  password: ""
+  loglevel: ""
